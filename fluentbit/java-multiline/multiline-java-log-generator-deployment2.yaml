@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multiline-java-log-generator2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multiline-java-log-generator2
+  template:
+    metadata:
+      labels:
+        app: multiline-java-log-generator2
+    spec:
+      containers:
+      - name: multiline-java-log-generator2
+        image: walloonam/multiline-java-log-generator2:latest
+        imagePullPolicy: Always 
+

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multiline-java-log-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multiline-java-log-generator
+  template:
+    metadata:
+      labels:
+        app: multiline-java-log-generator
+    spec:
+      containers:
+      - name: multiline-java-log-generator
+        image: maintndjs/sample-multiline:new1 
+        imagePullPolicy: IfNotPresent 
+
