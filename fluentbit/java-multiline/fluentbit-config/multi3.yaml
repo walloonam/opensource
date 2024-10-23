@@ -1,0 +1,65 @@
+# Source: fluent-bit/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit
+  namespace: logging
+  labels:
+    helm.sh/chart: fluent-bit-0.47.9
+    app.kubernetes.io/name: fluent-bit
+    app.kubernetes.io/instance: fluent-bit
+    app.kubernetes.io/version: "3.1.7"
+    app.kubernetes.io/managed-by: Helm
+data:
+  parsers.conf: |
+    [PARSER]
+        Name        cri
+        Format      regex
+        Regex       ^(?<time>[^ ]+ [^ ]+) (?<level>[A-Z]+): (?<message>.*)$ 
+        Time_Key    time
+        Time_Format %Y-%m-%dT%H:%M:%S.%L%z
+        Decode_Field_As json message
+        Multiline    On
+        Flush_Timeout 1000
+        # 스택 트레이스를 인식하는 정규 표현식 추가
+        N_Regex      ^\s+at\s.*$
+
+  fluent-bit.conf: |
+    [SERVICE]
+        Daemon Off
+        Flush 1
+        Log_Level info
+        Parsers_File /fluent-bit/etc/parsers.conf
+        Parsers_File /fluent-bit/etc/conf/custom_parsers.conf
+        HTTP_Server On
+        HTTP_Listen 0.0.0.0
+        HTTP_Port 2020
+        Health_Check On
+
+    [INPUT]
+        Name tail
+        Path /var/log/containers/*multiline-java-log-generator*.log
+        #multiline.parser docker, cri
+        Parser    cri
+        DB        /var/fluent-bit/state/flb_log.db
+        Tag kube.*
+        Mem_Buf_Limit 5MB
+        Skip_Long_Lines On
+        #Multiline On
+        multiline.parser java                    
+
+
+
+    [OUTPUT]
+        Name es
+        Match kube.*
+        Host  133.186.220.92
+        HTTP_User admin
+        HTTP_Passwd admin
+        Index  multi-test3
+        Logstash_Format Off 
+        Suppress_Type_Name On
+        tls           On
+        tls.Verify    Off
+        Retry_Limit False
+ 
