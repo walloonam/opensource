@@ -18,11 +18,7 @@ data:
         Regex       ^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<message>.*)$
         Time_Key    time
         Time_Format %Y-%m-%dT%H:%M:%S.%L%z
-        #        Decode_Field_As json message
-        Multiline    On
         Flush_Timeout 1000
-        # 스택 트레이스를 인식하는 정규 표현식 추가
-        N_Regex      ^\s+at\s.*$
 
   fluent-bit.conf: |
     [SERVICE]
