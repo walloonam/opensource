@@ -21,8 +21,6 @@ data:
         Decode_Field_As json message
         Multiline    On
         Flush_Timeout 1000
-        # 스택 트레이스를 인식하는 정규 표현식 추가
-        N_Regex      ^\s+at\s.*$
 
   fluent-bit.conf: |
     [SERVICE]
@@ -39,7 +37,6 @@ data:
     [INPUT]
         Name tail
         Path /var/log/containers/*multiline-java-log-generator*.log
-        #multiline.parser docker, cri
         Parser    cri
         DB        /var/fluent-bit/state/flb_log.db
         Tag kube.*

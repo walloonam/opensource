@@ -35,7 +35,6 @@ data:
     [INPUT]
         Name tail
         Path /var/log/containers/*multiline-java-log-generator*.log
-        #multiline.parser docker, cri
         Parser    cri
         DB        /var/fluent-bit/state/flb_log.db
         Tag kube.*

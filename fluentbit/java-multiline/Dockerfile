@@ -1,6 +1,6 @@
 FROM openjdk:17-jdk-alpine
-COPY ExtendedMultiLineLogGenerator2.java /app/
+COPY ExtendedMultiLineLogGenerator3.java /app/
 WORKDIR /app
-RUN javac ExtendedMultiLineLogGenerator2.java 
-CMD ["java", "ExtendedMultiLineLogGenerator2"]
+RUN javac ExtendedMultiLineLogGenerator3.java 
+CMD ["java", "ExtendedMultiLineLogGenerator3"]
 

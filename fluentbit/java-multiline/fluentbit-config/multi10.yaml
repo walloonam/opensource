@@ -19,10 +19,7 @@ data:
         Time_Key    time
         Time_Format %Y-%m-%dT%H:%M:%S.%L%z
         Decode_Field_As json message
-        # Multiline    On
         Flush_Timeout 1000
-        # 스택 트레이스를 인식하는 정규 표현식 추가
-        #        N_Regex      ^\s+at\s.*$
   
   custom_parsers.conf: | 
     [MULTILINE_PARSER]
@@ -49,14 +46,11 @@ data:
     [INPUT]
         Name tail
         Path /var/log/containers/*multiline-java-log-generator*.log
-        #multiline.parser docker, cri
         Parser    cri
         DB        /var/fluent-bit/state/flb_log.db
         Tag kube.*
         Mem_Buf_Limit 5MB
         Skip_Long_Lines On
-        #Multiline On
-        #       multiline.parser java                    
 
     [FILTER]
         Name          multiline

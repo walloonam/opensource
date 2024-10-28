@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: multiline-java-log-generator
-        image: maintndjs/sample-multiline:new1 
+        image: walloonam/multiline-java-log-generator:latest 
         imagePullPolicy: IfNotPresent 
 

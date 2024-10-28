@@ -26,14 +26,11 @@ data:
     [INPUT]
         Name tail
         Path /var/log/containers/*multiline-java-log-generator*.log
-        #multiline.parser docker, cri
         Parser    cri
         DB        /var/fluent-bit/state/flb_log.db
         Tag kube.*
         Mem_Buf_Limit 5MB
         Skip_Long_Lines On
-        #Multiline On
-        #       multiline.parser java                    
 
     [FILTER]
         Name          multiline
@@ -48,7 +45,7 @@ data:
         Host  133.186.220.92
         HTTP_User admin
         HTTP_Passwd admin
-        Index  multi-test15
+        Index  inline-java-multiline
         Logstash_Format Off 
         Suppress_Type_Name On
         tls           On
