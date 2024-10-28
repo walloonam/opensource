@@ -48,32 +48,108 @@ docker run --rm java-log-generator
 
 ## Java Exception
 ```less
-
+Oct 28, 2024 3:57:23 AM ExtendedMultiLineLogGenerator3 main
 SEVERE: Caught top-level exception: java.lang.Exception: Example Exception 1
 java.lang.Exception: Example Exception 1
-    at ExtendedMultiLineLogGenerator3.generateException1(ExtendedMultiLineLogGenerator3.java:22)
-    at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:12)
-Nested Exception (중첩 예외)
-php
+	at ExtendedMultiLineLogGenerator3.generateException1(ExtendedMultiLineLogGenerator3.java:64)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:9)
+
+Oct 28, 2024 3:57:23 AM ExtendedMultiLineLogGenerator3 main
 SEVERE: Caught nested exception: java.lang.Exception: Nested Exception
 java.lang.Exception: Nested Exception
-    at ExtendedMultiLineLogGenerator3.generateException2(ExtendedMultiLineLogGenerator3.java:28)
+	at ExtendedMultiLineLogGenerator3.generateException2(ExtendedMultiLineLogGenerator3.java:71)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:16)
 Caused by: java.lang.Exception: Inner Exception
-    at ExtendedMultiLineLogGenerator3.generateNestedException(ExtendedMultiLineLogGenerator3.java:34)
-    at ExtendedMultiLineLogGenerator3.generateException2(ExtendedMultiLineLogGenerator3.java:26)
+	at ExtendedMultiLineLogGenerator3.generateNestedException(ExtendedMultiLineLogGenerator3.java:76)
+	at ExtendedMultiLineLogGenerator3.generateException2(ExtendedMultiLineLogGenerator3.java:69)
+	... 1 more
 
-V8 Style Stack Trace
-java
-코드 복사
-V8 errors stack trace:
+Oct 28, 2024 3:57:23 AM ExtendedMultiLineLogGenerator3 main
+SEVERE: Caught exception with cause: java.lang.Exception: Exception with Cause
+java.lang.Exception: Exception with Cause
+	at ExtendedMultiLineLogGenerator3.generateExceptionWithCause(ExtendedMultiLineLogGenerator3.java:81)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:23)
+Caused by: java.lang.Exception: Cause of the Exception
+	at ExtendedMultiLineLogGenerator3.generateExceptionWithCause(ExtendedMultiLineLogGenerator3.java:80)
+	... 1 more
+
+Oct 28, 2024 3:57:23 AM ExtendedMultiLineLogGenerator3 main
+SEVERE: Caught suppressed exception: java.lang.Exception: Main Exception with Suppressed
+java.lang.Exception: Main Exception with Suppressed
+	at ExtendedMultiLineLogGenerator3.generateSuppressedException(ExtendedMultiLineLogGenerator3.java:85)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:30)
+	Suppressed: java.lang.Exception: Suppressed Exception
+		at ExtendedMultiLineLogGenerator3.generateSuppressedException(ExtendedMultiLineLogGenerator3.java:86)
+		... 1 more
+
+Oct 28, 2024 3:57:23 AM ExtendedMultiLineLogGenerator3 main
+SEVERE: Caught Error: java.lang.Error: Simulated Error for Testing
+java.lang.Error: Simulated Error for Testing
+	at ExtendedMultiLineLogGenerator3.generateError(ExtendedMultiLineLogGenerator3.java:92)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:37)
+
+Oct 28, 2024 3:57:23 AM ExtendedMultiLineLogGenerator3 main
+SEVERE: Caught Throwable: java.lang.Throwable: Simulated Throwable for Testing
+java.lang.Throwable: Simulated Throwable for Testing
+	at ExtendedMultiLineLogGenerator3.generateThrowable(ExtendedMultiLineLogGenerator3.java:96)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:44)
+
+Oct 28, 2024 3:57:28 AM ExtendedMultiLineLogGenerator3 main
+SEVERE: Caught top-level exception: java.lang.Exception: Example Exception 1
+java.lang.Exception: Example Exception 1
+	at ExtendedMultiLineLogGenerator3.generateException1(ExtendedMultiLineLogGenerator3.java:64)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:9)
+
+Oct 28, 2024 3:57:28 AM ExtendedMultiLineLogGenerator3 main
+SEVERE: Caught nested exception: java.lang.Exception: Nested Exception
+java.lang.Exception: Nested Exception
+	at ExtendedMultiLineLogGenerator3.generateException2(ExtendedMultiLineLogGenerator3.java:71)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:16)
+Caused by: java.lang.Exception: Inner Exception
+	at ExtendedMultiLineLogGenerator3.generateNestedException(ExtendedMultiLineLogGenerator3.java:76)
+	at ExtendedMultiLineLogGenerator3.generateException2(ExtendedMultiLineLogGenerator3.java:69)
+	... 1 more
+
+Oct 28, 2024 3:57:28 AM ExtendedMultiLineLogGenerator3 main
+SEVERE: Caught exception with cause: java.lang.Exception: Exception with Cause
+java.lang.Exception: Exception with Cause
+	at ExtendedMultiLineLogGenerator3.generateExceptionWithCause(ExtendedMultiLineLogGenerator3.java:81)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:23)
+Caused by: java.lang.Exception: Cause of the Exception
+	at ExtendedMultiLineLogGenerator3.generateExceptionWithCause(ExtendedMultiLineLogGenerator3.java:80)
+	... 1 more
+
+Oct 28, 2024 3:57:28 AM ExtendedMultiLineLogGenerator3 main
+SEVERE: Caught suppressed exception: java.lang.Exception: Main Exception with Suppressed
+java.lang.Exception: Main Exception with Suppressed
+	at ExtendedMultiLineLogGenerator3.generateSuppressedException(ExtendedMultiLineLogGenerator3.java:85)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:30)
+	Suppressed: java.lang.Exception: Suppressed Exception
+		at ExtendedMultiLineLogGenerator3.generateSuppressedException(ExtendedMultiLineLogGenerator3.java:86)
+		... 1 more
+
+Oct 28, 2024 3:57:28 AM ExtendedMultiLineLogGenerator3 main
+SEVERE: Caught Error: java.lang.Error: Simulated Error for Testing
+java.lang.Error: Simulated Error for Testing
+	at ExtendedMultiLineLogGenerator3.generateError(ExtendedMultiLineLogGenerator3.java:92)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:37)
+
+Oct 28, 2024 3:57:28 AM ExtendedMultiLineLogGenerator3 main
+SEVERE: Caught Throwable: java.lang.Throwable: Simulated Throwable for Testing
+java.lang.Throwable: Simulated Throwable for Testing
+	at ExtendedMultiLineLogGenerator3.generateThrowable(ExtendedMultiLineLogGenerator3.java:96)
+	at ExtendedMultiLineLogGenerator3.main(ExtendedMultiLineLogGenerator3.java:44)
+
+SERVER: V8 errors stack trace:
     at foo (file.js:1:1)
     at bar (file.js:2:2)
     at baz (file.js:3:3)
+
 ```
 
 ### 4. Fluent Bit 멀티라인 파서 설정 예시
 이 프로그램에서 생성된 로그를 효과적으로 파싱하려면 Fluent Bit의 멀티라인 파서 설정이 필요합니다. 아래는 예외 로그를 멀티라인으로 처리하기 위한 설정 예시입니다.
-
+해당 옵션은 java의 내장 multiline parser의 c 코드를 보고 임의로 작성한 것 
 ``` conf
 [MULTILINE_PARSER]
     Name          multiline_java
