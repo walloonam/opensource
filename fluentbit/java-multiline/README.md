@@ -2,6 +2,10 @@
 
 `ExtendedMultiLineLogGenerator3.java`는 다양한 예외와 에러 로그를 생성하여 Fluent Bit과 같은 로그 수집 도구에서 멀티라인 파서 테스트에 사용할 수 있는 Java 프로그램입니다.
 
+## 목표 
+fluent-bit의 내장 `JAVA MULTILINE PARSER` 형식은 어떤지를 파악 해 보기 위한 테스트를 위해 생성한 로그 생성 자바
+
+
 ## 기능
 
 이 프로그램은 다음과 같은 예외 및 에러 로그를 무한히 생성하여, 다양한 예외 케이스를 테스트할 수 있도록 돕습니다.
@@ -164,3 +168,6 @@ SERVER: V8 errors stack trace:
     Rule      "java_after_exception, java" "/^[\t ]*(?:Caused by|Suppressed):/" "java_after_exception"
     Rule      "java_after_exception, java" "/^[\t ]*... \d+ (?:more|common frames omitted)/" "java"
 ```
+
+### 참고
+fluent-bit github : https://github.com/fluent/fluent-bit/blob/master/src/multiline/flb_ml_parser_java.c
