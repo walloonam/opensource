@@ -32,21 +32,23 @@
 
 ```bash
 docker build -t java-log-generator .
+```
 
 ### 2. Docker 컨테이너 실행
 이미지를 빌드한 후 다음 명령어로 컨테이너를 실행하여 로그를 생성합니다.
 
 ```bash
 docker run --rm java-log-generator
+```
 
 컨테이너가 시작되면 프로그램이 5초마다 새로운 예외 로그를 출력하며 무한히 실행됩니다. 이를 통해 다양한 예외와 에러 로그를 자동으로 테스트할 수 있습니다.
 
-###3. 생성되는 로그 예시
+### 3. 생성되는 로그 예시
 실행 시 아래와 같은 로그가 생성됩니다.
 
-##Java Exception
+## Java Exception
 ```less
-코드 복사
+
 SEVERE: Caught top-level exception: java.lang.Exception: Example Exception 1
 java.lang.Exception: Example Exception 1
     at ExtendedMultiLineLogGenerator3.generateException1(ExtendedMultiLineLogGenerator3.java:22)
@@ -59,6 +61,7 @@ java.lang.Exception: Nested Exception
 Caused by: java.lang.Exception: Inner Exception
     at ExtendedMultiLineLogGenerator3.generateNestedException(ExtendedMultiLineLogGenerator3.java:34)
     at ExtendedMultiLineLogGenerator3.generateException2(ExtendedMultiLineLogGenerator3.java:26)
+
 V8 Style Stack Trace
 java
 코드 복사
@@ -66,11 +69,12 @@ V8 errors stack trace:
     at foo (file.js:1:1)
     at bar (file.js:2:2)
     at baz (file.js:3:3)
-4. Fluent Bit 멀티라인 파서 설정 예시
+```
+
+### 4. Fluent Bit 멀티라인 파서 설정 예시
 이 프로그램에서 생성된 로그를 효과적으로 파싱하려면 Fluent Bit의 멀티라인 파서 설정이 필요합니다. 아래는 예외 로그를 멀티라인으로 처리하기 위한 설정 예시입니다.
 
-conf
-코드 복사
+``` conf
 [MULTILINE_PARSER]
     Name          multiline_java
     Type          regex
@@ -83,3 +87,4 @@ conf
     Rule      "java_after_exception, java" "/^--- End of stack trace from previous location where exception was thrown ---$/" "java"
     Rule      "java_after_exception, java" "/^[\t ]*(?:Caused by|Suppressed):/" "java_after_exception"
     Rule      "java_after_exception, java" "/^[\t ]*... \d+ (?:more|common frames omitted)/" "java"
+```
