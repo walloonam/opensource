@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: log-printer
+spec:
+  containers:
+    - name: log-printer
+      image: walloonam/cto:latest
+      imagePullPolicy: Always
+      command: ["/print_log.sh"]
+  restartPolicy: Never
+
