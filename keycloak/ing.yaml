@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - keycloak.jaehun.shop
+    secretName: keycloak-ssl  
+  rules:
+    - host: keycloak.jaehun.shop 
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak
+                port:
+                  number: 8080
