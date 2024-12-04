@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: rollouts-demo-vsvc1
+spec:
+  gateways:
+  - rollouts-demo-gateway
+  hosts:
+  - test.inje-demo.com # 테스트 환경에 따라 도메인 변경
+  http:
+  - name: primary
+    route:
+    - destination:
+        host: rollouts-demo-stable
+        port:
+          number: 80
+      weight: 100
+    - destination:
+        host: rollouts-demo-canary
+        port:
+          number: 80
+      weight: 0
+
+

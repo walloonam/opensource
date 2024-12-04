@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rollouts-demo
+spec:
+  template:
+    spec:
+      containers:
+        - name: rollouts-demo
+          image: harbor.inje-private.com/open/nginx:a
+          ports:
+          - name: http
+            containerPort: 80
+
+
